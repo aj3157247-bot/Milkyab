@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>رهنمای معاملات افغانستان</title>
+  <meta name="description" content="پلتفرم جستجو، ثبت و هماهنگی معاملات املاک افغانستان">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container nav">
+    <a class="brand" href="index.html">🏠 رهنمای معاملات <span>افغانستان</span></a>
+    <nav>
+      <a href="pages/properties.html">املاک</a>
+      <a href="pages/add-property.html">ثبت ملک</a>
+      <a href="pages/office.html">دفتر ما</a>
+      <a href="pages/dashboard.html">حساب من</a>
+    </nav>
+    <a class="btn btn-primary" href="pages/login.html">ورود / ثبت‌نام</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">دفتر حضوری + جستجوی آنلاین</span>
+      <h1>خانه، زمین و دکان مورد نظرت را در منطقه خود پیدا کن.</h1>
+      <p>ملک را آنلاین پیدا کن، برای بازدید درخواست بده و معامله را با دفتر رهنمای معاملات به‌صورت حضوری دنبال کن.</p>
+      <div class="search-card">
+        <select id="province"><option value="">ولایت</option><option>کابل</option><option>هرات</option><option>بلخ</option><option>قندهار</option><option>ننگرهار</option></select>
+        <input id="district" placeholder="منطقه / ناحیه">
+        <select id="type"><option value="">نوع معامله</option><option value="rent">کرایی</option><option value="sale">فروشی</option></select>
+        <select id="category"><option value="">نوع ملک</option><option>خانه</option><option>آپارتمان</option><option>دکان</option><option>زمین</option><option>باغ</option></select>
+        <button class="btn btn-primary" onclick="homeSearch()">جستجو</button>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="floating-card"><b>🏠 خانه کرایی</b><br>کابل، کارته چهار<br><strong>۱۵٬۰۰۰ افغانی / ماه</strong></div>
+      <div class="building">🏘️</div>
+    </div>
+  </div>
+</section>
+
+<section class="container section">
+  <div class="section-head"><div><span class="eyebrow">دسته‌بندی</span><h2>چه معامله‌ای می‌خواهید؟</h2></div></div>
+  <div class="category-grid">
+    <a class="category" href="pages/properties.html?type=rent&category=خانه">🏠<b>خانه کرایی</b><small>خانه‌های موجود</small></a>
+    <a class="category" href="pages/properties.html?type=rent&category=آپارتمان">🏢<b>آپارتمان کرایی</b><small>آپارتمان‌های موجود</small></a>
+    <a class="category" href="pages/properties.html?type=sale&category=خانه">🏡<b>خانه فروشی</b><small>خانه‌های فروشی</small></a>
+    <a class="category" href="pages/properties.html?type=sale&category=زمین">🌳<b>زمین</b><small>زمین و باغ</small></a>
+    <a class="category" href="pages/properties.html?category=دکان">🏪<b>دکان</b><small>فروش و کرایه</small></a>
+  </div>
+</section>
+
+<section class="section muted">
+  <div class="container">
+    <div class="section-head"><div><span class="eyebrow">نمونه</span><h2>املاک جدید</h2></div><a href="pages/properties.html">مشاهده همه ←</a></div>
+    <div id="featured" class="property-grid"></div>
+  </div>
+</section>
+
+<section class="container section steps">
+  <div><span class="eyebrow">روند معامله</span><h2>از جستجو تا بازدید حضوری</h2></div>
+  <div class="step-grid">
+    <div><b>۱</b><h3>جستجو</h3><p>ولایت، منطقه و نوع ملک را انتخاب کنید.</p></div>
+    <div><b>۲</b><h3>انتخاب</h3><p>مشخصات و تصاویر ملک را بررسی کنید.</p></div>
+    <div><b>۳</b><h3>بازدید</h3><p>با دفتر هماهنگ کنید و ملک را حضوری ببینید.</p></div>
+    <div><b>۴</b><h3>معامله</h3><p>در صورت توافق، قرارداد طبق روند قانونی تنظیم می‌شود.</p></div>
+  </div>
+</section>
+</main>
+
+<footer><div class="container footer"><div><b>رهنمای معاملات افغانستان</b><p>سامانه آنلاین پیدا کردن ملک و هماهنگی با دفتر معاملات.</p></div><div><b>لینک‌ها</b><a href="pages/properties.html">املاک</a><a href="pages/add-property.html">ثبت ملک</a><a href="pages/office.html">دفتر</a></div></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+async function homeSearch(){
+  const p=document.getElementById('province').value,d=document.getElementById('district').value,t=document.getElementById('type').value,c=document.getElementById('category').value;
+  const q=new URLSearchParams({province:p,district:d,type:t,category:c}); location.href='pages/properties.html?'+q.toString();
+}
+loadFeatured();
+</script>
+</body>
+</html>
